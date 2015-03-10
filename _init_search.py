@@ -70,9 +70,10 @@ class TwitterHashtagSearch(object):
         # set our date defaults for comparisons
         start_date_utc = self.start_date_for_search.astimezone(TWITTER_TIMEZONE)
 
-        # open the csv file
+        # open a file
         with open(self.csv_filename, "wb") as csv_file:
 
+            # that will become our csv
             csv_output = csv.writer(csv_file, delimiter=',', quoting=csv.QUOTE_ALL)
 
             # write the header row to the csv file
@@ -86,8 +87,6 @@ class TwitterHashtagSearch(object):
 
                 # for each status
                 for tweet in tweet_results["statuses"]:
-
-                    #print tweet
 
                     # get the UTC time for each
                     tweet_date = parser.parse(tweet["created_at"])
@@ -123,6 +122,8 @@ class TwitterHashtagSearch(object):
         """
         function to auth with twitter and return tweets
         """
+
+        # build the authorization for the twitter api
         twitter_object = Twitter(
             auth=OAuth(
                 TWITTER_ACCESS_TOKEN,
@@ -132,6 +133,7 @@ class TwitterHashtagSearch(object):
             )
         )
 
+        # retrieve the tweets
         tweet_results = twitter_object.search.tweets(
             q=hashtag,
             count=1000,
@@ -140,6 +142,8 @@ class TwitterHashtagSearch(object):
             max_id=max_id,
             lang="en"
         )
+
+        # return them
         return tweet_results
 
     def build_csv_row_from(self, tweet, tweet_date):
@@ -157,12 +161,19 @@ class TwitterHashtagSearch(object):
             tweet_url,
         )
 
+        # see if an image is present in the dictionary
         has_image = tweet.has_key("media")
 
-        # if there are more
+        # if there are images
         if has_image == True:
+
+            # grab it
             tweet_image = tweet["media"]["media_url_https"]
+
+        # otherwise
         else:
+
+            # call it none
             tweet_image = None
 
         # build a row of tweet data
@@ -190,13 +201,17 @@ class TwitterHashtagSearch(object):
             tweet["lang"],
         ]
 
-        # return the row
+        # print the row
         print csv_row_data
+
+        # return the row
         return csv_row_data
 
     def check_text_for_bot(self, tweet_text):
         """
         let's see if we can indentify a bot
+        nothing special here
+        knew some had the same message
         """
         bot_check = re.compile("#NICAR15 View here ")
         bot_match = re.search(bot_check, tweet_text)
@@ -224,7 +239,11 @@ class TwitterHashtagSearch(object):
             parsed_string = results["search_metadata"]["next_results"].split("&")
             parsed_string = parsed_string[0].split("?max_id=")
             max_id = parsed_string[1]
+
+        # otherwise
         else:
+
+            # max id is nothing
             max_id = None
 
         # return the max id
