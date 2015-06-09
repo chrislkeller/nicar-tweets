@@ -25,10 +25,10 @@ TWITTER_TIMEZONE = timezone("UTC")
 class TwitterHashtagSearch(object):
 
     # you can really only search back 6 or 7 days
-    start_date_for_search = LOCAL_TIMEZONE.localize(datetime.datetime(2015, 3, 2, 8, 0))
+    start_date_for_search = LOCAL_TIMEZONE.localize(datetime.datetime(2015, 6, 2, 8, 0))
 
     # hashtag to search
-    hashtag = "#NICAR15"
+    hashtag = "#IRE15"
 
     # column names for our csv
     # this will change if you pull in more data
