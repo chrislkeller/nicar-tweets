@@ -1,3 +1,4 @@
+import os
 import csv
 import time
 import logging
@@ -15,17 +16,17 @@ logging.basicConfig(
     level=logging.DEBUG
 )
 
-TWITTER_CONSUMER_KEY = ""
-TWITTER_CONSUMER_SECRET = ""
-TWITTER_ACCESS_TOKEN = ""
-TWITTER_ACCESS_TOKEN_SECRET = ""
+TWITTER_CONSUMER_KEY = os.environ.get("TWITTER_CONSUMER_KEY")
+TWITTER_CONSUMER_SECRET = os.environ.get("TWITTER_CONSUMER_SECRET")
+TWITTER_ACCESS_TOKEN = os.environ.get("TWITTER_ACCESS_TOKEN")
+TWITTER_ACCESS_TOKEN_SECRET = os.environ.get("TWITTER_ACCESS_TOKEN_SECRET")
 LOCAL_TIMEZONE = pytz.timezone("US/Eastern")
 TWITTER_TIMEZONE = timezone("UTC")
 
 class TwitterHashtagSearch(object):
 
     # you can really only search back 6 or 7 days
-    start_date_for_search = LOCAL_TIMEZONE.localize(datetime.datetime(2015, 6, 2, 8, 0))
+    start_date_for_search = LOCAL_TIMEZONE.localize(datetime.datetime(2015, 6, 5, 8, 0))
 
     # hashtag to search
     hashtag = "#IRE15"
@@ -63,6 +64,7 @@ class TwitterHashtagSearch(object):
         """
         start the whole twitter hashtag search a rollin
         """
+
         # default params for our loop
         max_id = None
         search_is_done = False
