@@ -12,7 +12,7 @@ The search API is also rate-limited. More information on that [here](https://dev
 
 **What is here?**:
 
-* [_#NICAR16_tweets.csv](https://github.com/chrislkeller/nicar-tweets/blob/master/_%23NICAR16_tweets.csv): Pulled from a date range of 3/7/16 and 3/14/16.
+* [_#NICAR16_tweets.csv](/nicar-tweets/blob/master/_%23NICAR16_tweets.csv): Pulled from a date range of 3/7/16 and 3/14/16.
 * [_#srccon_tweets.csv](https://github.com/chrislkeller/nicar-tweets/blob/master/_%23srccon_tweets.csv): Pulled from a date range of 6/23/15 and 6/27/15.
 * [_#IRE15_tweets.csv](https://github.com/chrislkeller/nicar-tweets/blob/master/_%23IRE15_tweets.csv): Pulled from a date range of 6/3/15 and 6/9/15.
 * [_#NICAR15_tweets.csv](https://github.com/chrislkeller/nicar-tweets/blob/master/_%23NICAR15_tweets.csv): Pulled from a date range of 3/3/15 and 3/10/15.
