@@ -20,16 +20,16 @@ TWITTER_CONSUMER_KEY = os.environ.get("TWITTER_CONSUMER_KEY")
 TWITTER_CONSUMER_SECRET = os.environ.get("TWITTER_CONSUMER_SECRET")
 TWITTER_ACCESS_TOKEN = os.environ.get("TWITTER_ACCESS_TOKEN")
 TWITTER_ACCESS_TOKEN_SECRET = os.environ.get("TWITTER_ACCESS_TOKEN_SECRET")
-LOCAL_TIMEZONE = pytz.timezone("US/Mountain")
+LOCAL_TIMEZONE = pytz.timezone("US/Eastern")
 TWITTER_TIMEZONE = timezone("UTC")
 
 class TwitterHashtagSearch(object):
 
     # you can really only search back 6 or 7 days
-    start_date_for_search = LOCAL_TIMEZONE.localize(datetime.datetime(2016, 3, 7, 8, 0))
+    start_date_for_search = LOCAL_TIMEZONE.localize(datetime.datetime(2015, 3, 5, 8, 0))
 
     # hashtag to search
-    hashtag = "#NICAR16"
+    hashtag = "#NICAR17"
 
     # column names for our csv
     # this will change if you pull in more data
@@ -67,6 +67,7 @@ class TwitterHashtagSearch(object):
 
         # default params for our loop
         max_id = None
+
         search_is_done = False
 
         # set our date defaults for comparisons
@@ -138,11 +139,12 @@ class TwitterHashtagSearch(object):
         # retrieve the tweets
         tweet_results = twitter_object.search.tweets(
             q=hashtag,
-            count=1000,
+            count=100000,
             result_type="recent",
             include_entities=True,
             max_id=max_id,
-            lang="en"
+            lang="en",
+            until="2017-03-07"
         )
 
         # return them
@@ -215,7 +217,7 @@ class TwitterHashtagSearch(object):
         nothing special here
         knew some had the same message
         """
-        bot_check = re.compile("#NICAR15 View here ")
+        bot_check = re.compile("#NICAR17 View here ")
         bot_match = re.search(bot_check, tweet_text)
         try:
             if bot_match:
