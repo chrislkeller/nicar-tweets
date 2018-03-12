@@ -26,7 +26,7 @@ TWITTER_TIMEZONE = timezone("UTC")
 class TwitterUserSearch(object):
 
     # username to search
-    user = "chrislkeller"
+    user = ""
 
     # column names for our csv
     # this will change if you pull in more data

@@ -26,10 +26,10 @@ TWITTER_TIMEZONE = timezone("UTC")
 class TwitterHashtagSearch(object):
 
     # you can really only search back 6 or 7 days
-    start_date_for_search = LOCAL_TIMEZONE.localize(datetime.datetime(2015, 3, 5, 8, 0))
+    start_date_for_search = LOCAL_TIMEZONE.localize(datetime.datetime(2018, 3, 5, 8, 0))
 
     # hashtag to search
-    hashtag = "#NICAR17"
+    hashtag = "#NICAR18"
 
     # column names for our csv
     # this will change if you pull in more data
@@ -144,7 +144,7 @@ class TwitterHashtagSearch(object):
             include_entities=True,
             max_id=max_id,
             lang="en",
-            until="2017-03-07"
+            until="2018-03-13"
         )
 
         # return them
@@ -217,7 +217,7 @@ class TwitterHashtagSearch(object):
         nothing special here
         knew some had the same message
         """
-        bot_check = re.compile("#NICAR17 View here ")
+        bot_check = re.compile("#NICAR18 View here ")
         bot_match = re.search(bot_check, tweet_text)
         try:
             if bot_match:
