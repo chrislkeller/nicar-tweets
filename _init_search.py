@@ -20,16 +20,16 @@ TWITTER_CONSUMER_KEY = os.environ.get("TWITTER_CONSUMER_KEY")
 TWITTER_CONSUMER_SECRET = os.environ.get("TWITTER_CONSUMER_SECRET")
 TWITTER_ACCESS_TOKEN = os.environ.get("TWITTER_ACCESS_TOKEN")
 TWITTER_ACCESS_TOKEN_SECRET = os.environ.get("TWITTER_ACCESS_TOKEN_SECRET")
-LOCAL_TIMEZONE = pytz.timezone("US/Eastern")
+LOCAL_TIMEZONE = pytz.timezone("US/Pacific")
 TWITTER_TIMEZONE = timezone("UTC")
 
 class TwitterHashtagSearch(object):
 
     # you can really only search back 6 or 7 days
-    start_date_for_search = LOCAL_TIMEZONE.localize(datetime.datetime(2018, 3, 5, 8, 0))
+    start_date_for_search = LOCAL_TIMEZONE.localize(datetime.datetime(2019, 3, 6, 8, 0))
 
     # hashtag to search
-    hashtag = "#NICAR18"
+    hashtag = "#NICAR2019"
 
     # column names for our csv
     # this will change if you pull in more data
@@ -144,8 +144,10 @@ class TwitterHashtagSearch(object):
             include_entities=True,
             max_id=max_id,
             lang="en",
-            until="2018-03-13"
+            until="2019-03-13"
         )
+
+        logger.debug(tweet_results)
 
         # return them
         return tweet_results
