@@ -182,15 +182,15 @@ class TwitterHashtagSearch(object):
         csv_row_data = [
             self.hashtag,
             tweet_date,
-            tweet["user"]["name"].encode('ascii', 'ignore'),
-            tweet["user"]["screen_name"].encode('ascii', 'ignore'),
+            tweet["user"]["name"],
+            tweet["user"]["screen_name"],
             self.check_text_for_bot(tweet["text"]),
-            tweet["text"].encode('ascii', 'ignore'),
-            tweet_url.encode('ascii', 'ignore'),
+            tweet["text"],
+            tweet_url,
             tweet["id"],
-            tweet["user"]["profile_image_url"].encode('ascii', 'ignore'),
-            tweet["user"]["location"].encode('ascii', 'ignore'),
-            tweet["source"].encode('ascii', 'ignore'),
+            tweet["user"]["profile_image_url"],
+            tweet["user"]["location"],
+            tweet["source"],
             tweet["in_reply_to_screen_name"],
             tweet["in_reply_to_status_id_str"],
             tweet_image,
@@ -215,7 +215,7 @@ class TwitterHashtagSearch(object):
         nothing special here
         knew some had the same message
         """
-        bot_check = re.compile("#NICAR18 View here ")
+        bot_check = re.compile("#NICAR20 View here ")
         bot_match = re.search(bot_check, tweet_text)
         try:
             if bot_match:
