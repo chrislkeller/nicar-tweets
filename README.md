@@ -26,9 +26,9 @@ For any given year, I have no idea if these are all of them, but there are a lot
 
 **Getting Started**:
 
-* Create a virtual enviroment or if that's not your thing install the requirements
+* Assuming you have pipenv installed, create an enviroment to run the script
 
-    ```pip install -r requirements.txt```
+    ```pipenv install ```
 
 * Configure init_search.py
     * There are a handful of variables to change.
@@ -65,4 +65,4 @@ For any given year, I have no idea if these are all of them, but there are a lot
 
 * Run init_search.py
 
-    ```python init_search.py```
+    ```pipenv run python init_search.py```
