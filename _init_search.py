@@ -26,10 +26,10 @@ TWITTER_TIMEZONE = timezone("UTC")
 class TwitterHashtagSearch(object):
 
     # you can really only search back 6 or 7 days
-    start_date_for_search = LOCAL_TIMEZONE.localize(datetime.datetime(2019, 3, 6, 8, 0))
+    start_date_for_search = LOCAL_TIMEZONE.localize(datetime.datetime(2020, 3, 4, 8, 0))
 
     # hashtag to search
-    hashtag = "#NICAR2019"
+    hashtag = "#NICAR20"
 
     # column names for our csv
     # this will change if you pull in more data
@@ -74,7 +74,7 @@ class TwitterHashtagSearch(object):
         start_date_utc = self.start_date_for_search.astimezone(TWITTER_TIMEZONE)
 
         # open a file
-        with open(self.csv_filename, "wb") as csv_file:
+        with open(self.csv_filename, 'w') as csv_file:
 
             # that will become our csv
             csv_output = csv.writer(csv_file, delimiter=',', quoting=csv.QUOTE_ALL)
@@ -119,7 +119,7 @@ class TwitterHashtagSearch(object):
                 else:
 
                     # get more of them
-                    print "Retrieving more tweets since %s" % (max_id)
+                    print("Retrieving more tweets since %s" % (max_id))
 
     def construct_twitter_search(self, hashtag, max_id):
         """
@@ -144,7 +144,7 @@ class TwitterHashtagSearch(object):
             include_entities=True,
             max_id=max_id,
             lang="en",
-            until="2019-03-13"
+            until="2020-03-12"
         )
 
         logger.debug(tweet_results)
@@ -158,17 +158,13 @@ class TwitterHashtagSearch(object):
         """
 
         # construct url format
-        tweet_url = "https://twitter.com/" + tweet["user"]["screen_name"].encode('ascii', 'ignore') + "/status/" + str(tweet["id"])
+        tweet_url = "https://twitter.com/" + tweet["user"]["screen_name"] + "/status/" + str(tweet["id"])
 
         # output some information
-        print "%s - %s - %s" % (
-            tweet_date,
-            tweet["user"]["screen_name"],
-            tweet_url,
-        )
+        print("%s - %s - %s" % (tweet_date, tweet["user"]["screen_name"], tweet_url))
 
         # see if an image is present in the dictionary
-        has_image = tweet.has_key("media")
+        has_image = "media" in tweet
 
         # if there are images
         if has_image == True:
@@ -188,7 +184,7 @@ class TwitterHashtagSearch(object):
             tweet_date,
             tweet["user"]["name"].encode('ascii', 'ignore'),
             tweet["user"]["screen_name"].encode('ascii', 'ignore'),
-            self.check_text_for_bot(tweet["text"].encode('ascii', 'ignore')),
+            self.check_text_for_bot(tweet["text"]),
             tweet["text"].encode('ascii', 'ignore'),
             tweet_url.encode('ascii', 'ignore'),
             tweet["id"],
@@ -208,7 +204,7 @@ class TwitterHashtagSearch(object):
         ]
 
         # print the row
-        print csv_row_data
+        print(csv_row_data)
 
         # return the row
         return csv_row_data
@@ -236,7 +232,7 @@ class TwitterHashtagSearch(object):
         """
         # see if the metadata has a next_results key
         # value is the idea to pull tweets from
-        more_tweets = results["search_metadata"].has_key("next_results")
+        more_tweets = "next_results" in results["search_metadata"]
 
         # if there are more
         if more_tweets == True:
@@ -258,4 +254,4 @@ class TwitterHashtagSearch(object):
 if __name__ == '__main__':
     task_run = TwitterHashtagSearch()
     task_run._init()
-    print "\nTask finished at %s\n" % str(datetime.datetime.now())
+    print("\nTask finished at %s\n" % str(datetime.datetime.now()))
