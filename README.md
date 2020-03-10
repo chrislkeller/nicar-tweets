@@ -13,7 +13,8 @@ The search API is also rate-limited. More information on that [here](https://dev
 **What is here?**:
 
 For any given year, I have no idea if these are all of them, but there are a lot. Let me know if you do anything fun with them.
-
+* [_#NICAR20_tweets.csv](_%23NICAR20_tweets.csv): Pulled from a date range of 2020-03-04 and 2020-03-12.
+* [_#NICAR19_tweets.csv](_%23NICAR19_tweets.csv): Pulled from a date range of 2019-03-04 and 2019-03-14.
 * [_#NICAR18_tweets.csv](_%23NICAR18_tweets.csv): Pulled from a date range of 2018-03-05 and 2018-03-12.
 * [_#NICAR17_tweets.csv](_%23NICAR17_tweets.csv): Pulled from a date range of 2017-02-26 and and 2017-03-06.
 * [_#NICAR16_tweets.csv](_%23NICAR16_tweets.csv): Pulled from a date range of 2016-03-07 and 2016-03-14.
